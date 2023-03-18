@@ -18,9 +18,9 @@ function createPromise(position, delay) {
 function handleSubmit(event) {
   event.preventDefault();
 
-  const delay = Number(event.target.elements.delay.value);
-  const step = Number(event.target.elements.step.value);
-  const amount = Number(event.target.elements.amount.value);
+  const delay = +event.target.elements.delay.value;
+  const step = +event.target.elements.step.value;
+  const amount = +event.target.elements.amount.value;
 
   for (let i = 1; i <= amount; i++) {
     createPromise(i, delay + (i - 1) * step)

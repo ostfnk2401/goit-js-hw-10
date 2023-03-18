@@ -9,6 +9,7 @@ const startBtn = document.querySelector('[data-start]');
 const datePicker = document.querySelector('#datetime-picker');
 
 let countdown;
+let timer; // define timer as a global variable
 
 function updateTimer() {
   const timeLeft = countdown - Date.now();
@@ -17,16 +18,17 @@ function updateTimer() {
   const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-  daysEl.textContent = days < 10 ? `0${days}` : days;
-  hoursEl.textContent = hours < 10 ? `0${hours}` : hours;
-  minutesEl.textContent = minutes < 10 ? `0${minutes}` : minutes;
-  secondsEl.textContent = seconds < 10 ? `0${seconds}` : seconds;
-
   if (timeLeft <= 0) {
     clearInterval(timer);
     Notiflix.Notify.success('Countdown is over!');
     startBtn.disabled = false;
+    return;
   }
+
+  daysEl.textContent = days < 10 ? `0${days}` : days;
+  hoursEl.textContent = hours < 10 ? `0${hours}` : hours;
+  minutesEl.textContent = minutes < 10 ? `0${minutes}` : minutes;
+  secondsEl.textContent = seconds < 10 ? `0${seconds}` : seconds;
 }
 
 function startTimer() {
@@ -37,7 +39,7 @@ function startTimer() {
   }
   startBtn.disabled = true;
   updateTimer();
-  const timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 1000); // assign the interval ID to the timer variable
 }
 
 flatpickr(datePicker, {
