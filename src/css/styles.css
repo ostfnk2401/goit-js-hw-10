@@ -18,3 +18,22 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+img {
+  width: 32px;
+  height: 32px;
+}
+.country-list {
+  padding: 0;
+}
+
+.country-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-title{
+  margin: 0;
+  font-style: bold;
+}
