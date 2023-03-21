@@ -1,7 +1,7 @@
 import './css/styles.css';
 import fetchCountries from './fetchCountries.js';
 import debounce from 'lodash.debounce';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix';
 
 // const DEBOUNCE_DELAY = 300;
 const searchBox = document.querySelector('#search-box');
@@ -36,8 +36,8 @@ const createCountryList = (countries) => {
 const handleSearch = () => {
     const searchTerm = searchBox.value.trim();
     if (!searchTerm) {
-      countryList.innerHTML = '';
       countryInfo.innerHTML = '';
+      countryList.innerHTML = '';
       return;
     }
   
@@ -47,27 +47,27 @@ const handleSearch = () => {
           return;
         }
         if (countries.length > 10) {
-          Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-          countryList.innerHTML = '';
+          Notify.info('Too many matches found. Please enter a more specific name.');
           countryInfo.innerHTML = '';
+          countryList.innerHTML = '';
           return;
         }
         if (countries.length > 1 && countries.length <= 10) {
-          countryList.innerHTML = createCountryList(countries);
           countryInfo.innerHTML = '';
+          countryList.insertAdjacentHTML('beforeend', createCountryList(countries));
           return;
         }
         if (countries.length === 1) {
           countryList.innerHTML = '';
-          countryInfo.innerHTML = createCountryCard(countries[0]);
+          countryInfo.insertAdjacentHTML('beforeend', createCountryCard(countries[0]));;
           return;
         }
-        Notiflix.Notify.failure('Country not found');
-        countryList.innerHTML = '';
+        Notify.failure('Country not found');
         countryInfo.innerHTML = '';
+        countryList.innerHTML = '';
       })
       .catch((error) => {
-        Notiflix.Notify.failure('Oops, something went wrong! Please try again.');
+        Notify.failure('Oops, something went wrong! Please try again.');
         console.log(error);
       });
   };
