@@ -68,6 +68,8 @@ const handleSearch = () => {
       })
       .catch((error) => {
         Notify.failure('Oops, something went wrong! Please try again.');
+        countryInfo.innerHTML = '';
+        countryList.innerHTML = '';
         console.log(error);
       });
   };
