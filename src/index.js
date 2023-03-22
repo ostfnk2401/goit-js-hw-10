@@ -59,7 +59,7 @@ const handleSearch = () => {
         }
         if (countries.length === 1) {
           countryList.innerHTML = '';
-          countryInfo.insertAdjacentHTML('beforeend', createCountryCard(countries[0]));;
+          countryInfo.insertAdjacentHTML('beforeend', createCountryCard(countries[0]));
           return;
         }
         Notify.failure('Country not found');
