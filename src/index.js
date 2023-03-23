@@ -25,6 +25,7 @@ const createCountryCard = (country) => {
     `;
   };
   
+  
 const createCountryList = (countries) => {
   const countryItems = countries.map(
     (country) =>
@@ -59,6 +60,7 @@ const handleSearch = () => {
         }
         if (countries.length === 1) {
           countryList.innerHTML = '';
+          countryInfo.innerHTML = '';
           countryInfo.insertAdjacentHTML('beforeend', createCountryCard(countries[0]));
           return;
         }
